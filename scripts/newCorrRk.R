@@ -1,6 +1,5 @@
 #Correlation Analysis
 
-
 path<-"/home/arushi/My Repositories/Projects/DataScience/DiwaliSmog2016/data/rkPuram"
 setwd(path)
 
@@ -42,10 +41,10 @@ modno2a
 
 #ggplot(combinedrk,aes(ws,no2,color=2))+ geom_point(size = 1,show.legend = FALSE)+geom_abline()+ xlab("Solar Radiation (w/m2)") + ylab("NO2 Concentration(µg/m3)") + ggtitle(" R.K. Puram : NO2 Vs Solar Radiation Intensity ")+ylim(0,200) + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))
 pairs(df)
-par(mfrow=c(4,1))
-par(mar=c(4,3,1,1))
+par(mfrow=c(1,1))
+
 md1<-lm(no2~ws)
-plot(ws,no2,main="Rk Puram : NO2 Regression Model",las=1,col=2,xlab = "wind speed")
+plot(ws,no2,las=1,col=2,xlab = "wind speed")
 abline(md1,col="blue",lty=1,lw=1)
 
 md2<-lm(no2~rh)
@@ -74,14 +73,13 @@ attributes(modso2a)
 cor(ws,so2)
 cor(rh,so2)
 cor(so2,temp)
+cor(so2,sr)
 modso2a
 
 #ggplot(combinedrk,aes(ws,no2,color=2))+ geom_point(size = 1,show.legend = FALSE)+geom_abline()+ xlab("Solar Radiation (w/m2)") + ylab("NO2 Concentration(µg/m3)") + ggtitle(" R.K. Puram : NO2 Vs Solar Radiation Intensity ")+ylim(0,200) + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))
 
-par(mfrow=c(4,1))
-par(mar=c(4,3,1,1))
 md1<-lm(so2~ws)
-plot(ws,so2,main="RkPuram : SO2 Regression Models",las=1,col=3,xlab = "wind speed")
+plot(ws,so2,las=1,col=3,xlab = "wind speed")
 abline(md1,col="blue",lty=1,lw=1)
 
 md2<-lm(so2~rh)
@@ -111,14 +109,13 @@ attributes(modo3a)
 cor(ws,o3)
 cor(rh,o3)
 cor(o3,temp)
+cor(o3,sr)
 modo3a
 
 #ggplot(combinedrk,aes(ws,no2,color=2))+ geom_point(size = 1,show.legend = FALSE)+geom_abline()+ xlab("Solar Radiation (w/m2)") + ylab("NO2 Concentration(µg/m3)") + ggtitle(" R.K. Puram : NO2 Vs Solar Radiation Intensity ")+ylim(0,200) + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))
 
-par(mfrow=c(4,1))
-par(mar=c(4,3,1,1))
 md1<-lm(o3~ws)
-plot(ws,o3,main="RkPuram : O3 Regression Models",las=1,col=6,xlab = "wind speed")
+plot(ws,o3,las=1,col=6,xlab = "wind speed")
 abline(md1,col="blue",lty=1,lw=1)
 
 md2<-lm(o3~rh)
@@ -141,31 +138,57 @@ attributes(modpm10a)
 cor(ws,pm10)
 cor(rh,pm10)
 cor(pm10,temp)
+cor(pm10,sr)
 modpm10a
 
 #ggplot(combinedrk,aes(ws,no2,color=2))+ geom_point(size = 1,show.legend = FALSE)+geom_abline()+ xlab("Solar Radiation (w/m2)") + ylab("NO2 Concentration(µg/m3)") + ggtitle(" R.K. Puram : NO2 Vs Solar Radiation Intensity ")+ylim(0,200) + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))
 
-par(mfrow=c(4,1))
-par(mar=c(4,3,1,1))
+
+
 md1<-lm(pm10~ws)
-plot(ws,pm10,main="RkPuram : PM10 Regression Models",las=1,col=8,xlab = "wind speed")
+plot(ws,pm10,las=1,col=9,xlab = "wind speed")
 abline(md1,col="blue",lty=1,lw=1)
 
 md2<-lm(pm10~rh)
-plot(rh,pm10,las=1,col=8,xlab = "Rel. Humidity")
+plot(rh,pm10,las=1,col=9,xlab = "Rel. Humidity")
 abline(md2,col="blue",lty=1,lw=1)
 
 md3<-lm(pm10~temp)
-plot(temp,pm10,las=1,col=8,xlab = "Temperature")
+plot(temp,pm10,las=1,col=9,xlab = "Temperature")
 abline(md3,col="blue",lty=1,lw=1)
 
 md4<-lm(pm10~sr)
-plot(sr,pm10,las=1,col=8,xlab = "Solar Radiation Intensity")
+plot(sr,pm10,las=1,col=9,xlab = "Solar Radiation Intensity")
 abline(md4,col="blue",lty=1,lw=1)
 
 
 
 
+
+path<-"/home/arushi/My Repositories/Projects/DataScience/DiwaliSmog2016/data/mandirMarg"
+setwd(path)
+
+combinedmg <- read.csv("allPollutantFactorsCombinedmg.csv")
+attach(combinedmg)
+df2<-combinedrk[,(2:5)]
+df2<-cbind(df2,pm10)
+n2<-cor(df2)
+par(mfrow=c(1,1))
+par(mar=c(1,1,1,1))
+
+corrplot.mixed(n2)
+detach(combinedmg)
+
+
+attach(combinedrk)
+df2<-combinedrk[,(2:5)]
+df2<-cbind(df2,pm10)
+n2<-cor(df2)
+par(mfrow=c(1,1))
+par(mar=c(1,1,1,1))
+
+corrplot.mixed(n2)
+detach(combinedrk)
 
 
 

@@ -200,7 +200,7 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 }
 
 
-p2<-ggplot(wsrk,aes(wsrk$Date,wsrk$Concentration))+ geom_line(size = 1,show.legend = FALSE,color="darkslategray") + xlab("Dates")+ ylab("Speed(m/s)") + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))+ ylim(0,2)
+p2<-ggplot(wsrk,aes(wsrk$Date,wsrk$Concentration))+ geom_line(size = 1,show.legend = FALSE,color="darkslategray") + xlab("Dates")+ ylab(" Wind Speed(m/s)") + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))+ ylim(0,2)
 
 multiplot(p1,p2,cols=1)
 
