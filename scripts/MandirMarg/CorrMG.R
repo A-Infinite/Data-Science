@@ -1,9 +1,9 @@
 #Correlation Analysis
 
-
-path<-"~/Desktop/IT NSIT/6th sem/Project/Data Science/Mandir Marg"
+path<-"~/Desktop/Data Science/Mandir Marg"
 setwd(path)
 
+#Load File
 combinedrk <- read.csv("allPollutantFactorsCombined.csv")
 
 combinedrk$Date<- as.Date(combinedrk$Date,format = "%d/%m/%Y")
@@ -20,10 +20,6 @@ df<-combinedrk[,(2:8)]
 
 n<-cor(df)
 library("corrplot")
-n
-
-#d <- data.frame(rh=rnorm(92),ws=rnorm(92),sr=rnorm(92),temp=rnorm(92),no2=rnorm(92),so2=rnorm(92),o3=rnorm(92),pm10=rnorm(92))
-#M <- cor(d)
 
 corrplot(n, method = "circle",addCoef.col = "gray")
 
@@ -64,13 +60,7 @@ md4
 plot(sr,no2,las=1,col=2,xlab = "Solar Radiation Intensity")
 abline(md4,col="blue",lty=1,lw=1)
 
-#md<-lm(no2~ws)
-#summary(md)
-#plot(ws,no2,main="NO2 Regression Model",las=1)
-
-#ggplot(combinedrk,aes(ws,no2,color=2))+ geom_point(size = 1,show.legend = FALSE)++geom_smooth(se=FALSE)+geom_abline(aes(slope=-44,intercept=131),data=md)+ xlab("Solar Radiation (w/m2)") + ylab("NO2 Concentration(µg/m3)") + ggtitle(" R.K. Puram : NO2 Vs Solar Radiation Intensity ")+ylim(0,200) + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))
-
-
+#*******************************************************************************************************************************
 #Analysis of so2
 modso2a<-lm(so2~ws+rh+sr+temp)
 summary(modso2a)
@@ -105,7 +95,7 @@ plot(sr,so2,las=1,col=3,xlab = "Solar Radiation Intensity")
 abline(md4,col="blue",lty=1,lw=1)
 
 
-
+#*******************************************************************************************************************************
 #Analysis of pm10
 modpm10a<-lm(pm10~ws+rh+sr+temp)
 summary(modpm10a)
