@@ -1,7 +1,6 @@
-
+#set the working directory
 path<-"/home/arushi/My Repositories/Projects/DataScience/DiwaliSmog2016/data/rkPuram/meterological"
 setwd(path)
-
 
 #Load Datasets
 rhrk <- read.csv("rhRkPuram.csv")
@@ -20,10 +19,8 @@ str(rhrk)
 #Check For Missing Values
 table(is.na(rhrk))
 
-
 #Get Summary of all Variables
 summary(rhrk)
-
 
 #date manipulation, for changing the date format
 rhrk$Date<- as.Date(rhrk$Date,format = "%d/%m/%Y")
@@ -35,12 +32,11 @@ levels(Months)
 # Add a new Variable called "Months"
 rhrk <- cbind(rhrk,Months)
 
-
 ggplot(rhrk,aes(rhrk$Date,rhrk$Concentration))+ geom_line(size = 1,show.legend = FALSE,color="orchid4") + xlab("Dates") + ylab("%") + ggtitle(" R.K. Puram : Relative Humidity vs Dates ") + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))+ ylim(20,90)
 
 detach(rhrk)
 #rm(list = ls())
-
+#****************************************************************************************************************************
 #solarRadiation
 #Load Datasets
 srrk <- read.csv("srRkPuram.csv")
@@ -71,13 +67,9 @@ srrk <- cbind(srrk,Months)
 
 
 ggplot(srrk,aes(srrk$Date,srrk$Concentration))+ geom_line(size = 1,show.legend = FALSE,color="gold") + xlab("Dates") + ylab("Intensity(w/m2)") + ggtitle(" R.K. Puram : Solar Radiation Intensity vs Dates ") + theme(axis.text.x = element_text(angle = 0, vjust = 0.5, color = "navy"))+ ylim(10,125)
-
-
-
 detach(srrk)
 #rm(list = ls())
-
-
+#****************************************************************************************************************************
 #Temperature
 #Load Datasets
 trk <- read.csv("tempRkPuram.csv")
@@ -111,7 +103,7 @@ ggplot(trk,aes(trk$Date,trk$Concentration))+ geom_line(size = 1,show.legend = FA
 
 detach(trk)
 #rm(list = ls())
-
+#****************************************************************************************************************************
 
 #WINDSPEED
 
@@ -148,7 +140,7 @@ ggplot(wsrk,aes(wsrk$Date,wsrk$Concentration))+ geom_line(size = 1,show.legend =
 detach(wsrk)
 #rm(list = ls())
 
-
+#****************************************************************************************************************************
 #Combining the graphs ...
 combi <- read.csv("combined.csv")
 attach(combi)
