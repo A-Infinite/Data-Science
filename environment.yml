@@ -1,0 +1,6 @@
+name: smog
+channels:
+- conda-forge
+- defaults
+prefix: /Users/ashok/miniconda2/envs/smog
+
